@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyTranscriberApi", "CurrencyTranscriberApi\CurrencyTranscriberApi.csproj", "{C0F5E633-34DA-4AF4-B301-19240A1335A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyTranscriberApi", "CurrencyTranscriberApi\CurrencyTranscriberApi.csproj", "{C0F5E633-34DA-4AF4-B301-19240A1335A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyTranscriberClient", "CurrencyTranscriberClient\CurrencyTranscriberClient.csproj", "{EFB21E92-09CF-4FA0-A2F4-C3699CD8F899}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C0F5E633-34DA-4AF4-B301-19240A1335A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0F5E633-34DA-4AF4-B301-19240A1335A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0F5E633-34DA-4AF4-B301-19240A1335A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFB21E92-09CF-4FA0-A2F4-C3699CD8F899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFB21E92-09CF-4FA0-A2F4-C3699CD8F899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFB21E92-09CF-4FA0-A2F4-C3699CD8F899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFB21E92-09CF-4FA0-A2F4-C3699CD8F899}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
