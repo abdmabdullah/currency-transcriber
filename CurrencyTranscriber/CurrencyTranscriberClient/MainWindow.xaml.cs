@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,9 +22,21 @@ namespace CurrencyTranscriberClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly HttpClient httpClient;
+
+        public MainWindow(HttpClient httpClient)
         {
             InitializeComponent();
+            this.httpClient = httpClient;
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            HttpResponseMessage response = httpClient.GetAsync($"currency/GetTranscribedCurrency?number={currencyTextBox.Text}").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var words = response.Content.ReadFromJsonAsync<string>().Result;
+            }
         }
     }
 }

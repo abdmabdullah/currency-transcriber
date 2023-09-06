@@ -9,7 +9,8 @@ namespace CurrencyTranscriberApi.Controllers
     [ApiController]
     public class CurrencyController : ControllerBase
     {
-        [HttpGet(Name = "GetTranscribedCurrency")]
+        [Route("GetTranscribedCurrency")]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
