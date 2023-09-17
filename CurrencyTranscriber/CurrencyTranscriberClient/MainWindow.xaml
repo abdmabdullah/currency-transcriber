@@ -5,6 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:c="clr-namespace:CurrencyTranscriberClient.ValidationRules"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="400">
+    <Window.Resources>
+        <ControlTemplate x:Key="ErrorTemplate">
+
+            <DockPanel LastChildFill="True">
+
+                <Border BorderBrush="Red" BorderThickness="1">
+
+                    <AdornedElementPlaceholder />
+
+                </Border>
+
+            </DockPanel>
+
+        </ControlTemplate>
+
+        <Style TargetType="TextBox">
+
+            <Style.Triggers>
+
+                <Trigger Property="Validation.HasError" Value="true">
+
+                    <Setter Property="ToolTip"
+
+          Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+
+Path=(Validation.Errors)[0].ErrorContent}"/>
+
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+    </Window.Resources>
     <Grid>
         <Label x:Name="label" Content="Enter dollar amount" HorizontalAlignment="Center" Margin="0,156,0,0" VerticalAlignment="Top"/>
         <TextBox 
@@ -13,9 +46,11 @@
             Margin="138,187,0,0" 
             TextWrapping="Wrap" 
             VerticalAlignment="Top" 
-            Text="{Binding Path=DollarAmount, ValidatesOnDataErrors=true,UpdateSourceTrigger=PropertyChanged}"
-            Width="120">
+            Text="{Binding Path=DollarAmount, ValidatesOnDataErrors=true, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+            Width="120"
+            Validation.ErrorTemplate="{StaticResource ErrorTemplate}">
         </TextBox>
+        
         <Button 
             x:Name="button" 
             Content="Convert" 
