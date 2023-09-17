@@ -32,7 +32,10 @@ namespace CurrencyTranscriberApi.Controllers
             string[] splitNumber = number.Split(CurrencyHelper.DECIMAL_SEPARATOR);
 
             int dollars = int.Parse(splitNumber[0]);
-            int cents = splitNumber.Length > 1 ? int.Parse(splitNumber[1]) : 0;
+            int cents = splitNumber.Length > 1 ? string.IsNullOrWhiteSpace(splitNumber[1]) ? 0 : int.Parse(splitNumber[1]) : 0;
+
+            if (cents == 1)
+                cents = 10;
 
             if (cents > 99)
                 return BadRequest("Invalid cents");

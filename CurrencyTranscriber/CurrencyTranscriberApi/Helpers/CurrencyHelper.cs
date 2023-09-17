@@ -26,7 +26,7 @@ namespace CurrencyTranscriberApi.Helpers
         };
 
         private static readonly string[] teens =
-            { "", "eleven", "twelve",
+            { "ten", "eleven", "twelve",
             "thirteen", "fourteen", "fifteen",
             "sixteen", "seventeen", "eighteen",
             "nineteen" };
