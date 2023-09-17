@@ -52,7 +52,7 @@ namespace CurrencyTranscriberClient
 
         private async void button_Click(object sender, RoutedEventArgs e)
         {
-            HttpResponseMessage response = await httpClient.GetAsync($"currency/GetTranscribedCurrency?number={currencyTextBox.Text}");
+            HttpResponseMessage response = await httpClient.GetAsync($"currency/GetTranscribedCurrency?number={DollarAmount}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -63,17 +63,28 @@ namespace CurrencyTranscriberClient
                     CurrencyInWords = words;
                 }
             }
+            else
+            {
+                if(response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    string error = await response.Content.ReadAsStringAsync();
+                    CurrencyInWords = error;
+                }
+                else
+                {
+                    CurrencyInWords = "Something went wrong with your request. Please try later";
+                }
+            }
         }
 
         private string? ValidateDollarAmount()
         {
-            Regex _numericRegex = new Regex("[^0-9.-]+");
-            Regex _decimalRegex = new Regex("^[-+]?\\d{1,3}(\\s\\d{3})*(,\\d+)?$");
+            Regex validationRegex = new Regex("^[0-9\\s]{1,},?\\d?\\d?$");
 
             if (DollarAmount is null)
                 return "Amount cannot be empty";
 
-            if (!_numericRegex.IsMatch(DollarAmount) && !_decimalRegex.IsMatch(DollarAmount))
+            if (!validationRegex.IsMatch(DollarAmount))
 
                 return "Input is not a valid format";
 
@@ -83,6 +94,11 @@ namespace CurrencyTranscriberClient
                 return "Cents cannot be greater than 99";
 
             return default;
+        }
+
+        private void currencyTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            CurrencyInWords = string.Empty;
         }
     }
 }

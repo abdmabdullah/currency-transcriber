@@ -34,7 +34,7 @@ namespace CurrencyTranscriberApi.Helpers
         public static string GetWords(int amount)
         {
             if (amount == 0)
-                return "";
+                return "zero";
             else if (amount < 10)
                 return units[amount];
             else if (amount < 20)
@@ -54,7 +54,7 @@ namespace CurrencyTranscriberApi.Helpers
             if(!string.IsNullOrWhiteSpace(centWords))
                 return $"{dollarWords} dollars and {centWords} {GetCentKeyword(centWords)}";
             else
-                return $"{dollarWords} dollars";
+                return $"{dollarWords} {(dollarWords == "one" ? "dollar" : "dollars")}";
         }
 
         private static string GetCentKeyword(string centWords)

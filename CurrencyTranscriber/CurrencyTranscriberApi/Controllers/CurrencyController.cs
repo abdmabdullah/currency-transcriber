@@ -23,11 +23,11 @@ namespace CurrencyTranscriberApi.Controllers
 
             decimal amount;
 
-            if (!decimal.TryParse(number.Replace(",", ""), out amount))
+            if (!decimal.TryParse(number.Replace(",", "."), out amount))
                 return BadRequest("Invalid format");
 
             if (amount < 0 || amount > 999999999.99M)
-                return BadRequest("Invalid amount");
+                return BadRequest("Please enter an amount between 0 and 999999999,99");
 
             string[] splitNumber = number.Split(CurrencyHelper.DECIMAL_SEPARATOR);
 

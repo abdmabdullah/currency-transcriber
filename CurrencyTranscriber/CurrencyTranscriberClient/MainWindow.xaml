@@ -5,37 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:c="clr-namespace:CurrencyTranscriberClient.ValidationRules"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="400">
+    
     <Window.Resources>
         <ControlTemplate x:Key="ErrorTemplate">
-
             <DockPanel LastChildFill="True">
-
                 <Border BorderBrush="Red" BorderThickness="1">
-
                     <AdornedElementPlaceholder />
-
                 </Border>
-
             </DockPanel>
-
         </ControlTemplate>
-
+        
         <Style TargetType="TextBox">
-
             <Style.Triggers>
-
                 <Trigger Property="Validation.HasError" Value="true">
-
                     <Setter Property="ToolTip"
-
           Value="{Binding RelativeSource={x:Static RelativeSource.Self},
-
-Path=(Validation.Errors)[0].ErrorContent}"/>
-
+                Path=(Validation.Errors)[0].ErrorContent}"/>
                 </Trigger>
-
             </Style.Triggers>
-
         </Style>
     </Window.Resources>
     <Grid>
@@ -48,7 +35,8 @@ Path=(Validation.Errors)[0].ErrorContent}"/>
             VerticalAlignment="Top" 
             Text="{Binding Path=DollarAmount, ValidatesOnDataErrors=true, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
             Width="120"
-            Validation.ErrorTemplate="{StaticResource ErrorTemplate}">
+            Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
+            TextChanged="currencyTextBox_TextChanged">
         </TextBox>
         
         <Button 
